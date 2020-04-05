@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import Video from './video'; // video.js
 
 import './index.css';
-//import './video.css';
+
+// ------ App class ------
 
 class App extends React.Component {
   constructor(props) {
@@ -74,7 +75,7 @@ class App extends React.Component {
   }
 }
 
-
+// ====================== ReactDOM rendering ====================
 
 ReactDOM.render(
   <App />,

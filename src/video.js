@@ -1,11 +1,12 @@
 import React from 'react';
 import './video.css';
 
+// ------ Video Component ------
+
 class Video extends React.Component {
   constructor(props) {
     super(props);
     this.elementRef = React.createRef();
-    //this.state = { stream: null };
   }
 
   componentDidMount() {
