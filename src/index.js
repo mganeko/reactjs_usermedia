@@ -1,38 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Video from './video'; // video.js
+
 import './index.css';
-
-
-class Video extends React.Component {
-  constructor(props) {
-    super(props);
-    this.elementRef = React.createRef();
-    //this.state = { stream: null };
-  }
-
-  componentDidMount() {
-    console.log('Video DidMound()');
-  }
-
-  componentWillUnmount() {
-    console.log('Video WillUnmount()');
-  }
-
-  render() {
-    console.log('Video render()');
-    const stream = this.props.stream;
-    if (this.elementRef.current) {
-      this.elementRef.current.srcObject = stream;
-    }
-    else {
-      console.log('ref.current NULL');
-    }
-
-    return (
-      <video ref={this.elementRef} autoPlay muted></video>
-    );
-  }
-}
+//import './video.css';
 
 class App extends React.Component {
   constructor(props) {
@@ -95,7 +66,7 @@ class App extends React.Component {
         <button onClick={this.startVideo}> Start Video</button >
         <button onClick={this.stopVideo}>Stop Video</button>
         <div className="VideoContainer">
-          <Video id="local_video" stream={this.localStream}>
+          <Video id={"local_video"} width={"240px"} height={"180px"} stream={this.localStream}>
           </Video>
         </div>
       </div >
