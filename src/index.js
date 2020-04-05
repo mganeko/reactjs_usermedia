@@ -9,7 +9,7 @@ import './index.css';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.localSteam = null;
+    this.localStream = null;
     this.state = {
       playing: false,
     };
@@ -63,7 +63,7 @@ class App extends React.Component {
     console.log('App render()');
     return (
       <div className="App" >
-        App body<br />
+        React getUserMedia example<br />
         <button onClick={this.startVideo}> Start Video</button >
         <button onClick={this.stopVideo}>Stop Video</button>
         <div className="VideoContainer">
