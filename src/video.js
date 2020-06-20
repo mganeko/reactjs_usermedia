@@ -1,34 +1,44 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import './video.css';
 
 // ------ Video Component ------
 
-class Video extends React.Component {
-  constructor(props) {
-    super(props);
-    this.elementRef = React.createRef();
-  }
+function Video(props) {
+  const elementRef = useRef(null);
 
-  componentDidMount() {
-    console.log('Video DidMound()');
-  }
+  useEffect(() => {
+    const stream = props.stream;
+    let volumeValue = 0;
+    if (props.volume) {
+      volumeValue = props.volume;
+    }
 
-  componentWillUnmount() {
-    console.log('Video WillUnmount()');
-  }
+    if (elementRef.current) {
+      if (elementRef.current.srcObject === stream) {
+        console.log('useEffect() same stream, so skip:', stream);
+      }
+      else {
+        elementRef.current.srcObject = stream;
+        console.log('useEffect() set stream:', stream);
+      }
 
-  render() {
-    console.log('Video render()');
-    const stream = this.props.stream;
-    if (this.elementRef.current) {
-      this.elementRef.current.srcObject = stream;
+      elementRef.current.volume = volumeValue;
     }
     else {
-      console.log('ref.current NULL');
+      console.log('useEffect() ref.current NULL');
     }
+  });
 
+  console.log('Video rendering, id=%s', props.id);
+  const controls = props.controls;
+  if (controls) {
     return (
-      <video className="video_with_border" ref={this.elementRef} id={this.props.id} width={this.props.width} height={this.props.height} autoPlay muted ></video>
+      <video className="video_with_border" ref={elementRef} id={props.id} width={props.width} height={props.height} autoPlay muted playsInline controls ></video>
+    );
+  }
+  else {
+    return (
+      <video className="video_with_border" ref={elementRef} id={props.id} width={props.width} height={props.height} autoPlay muted playsInline ></video>
     );
   }
 }
